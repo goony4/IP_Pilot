@@ -1,1 +1,0 @@
-https://raw.githubusercontent.com/goony4/IP_Pilot/main/version.json
