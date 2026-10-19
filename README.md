@@ -20,6 +20,10 @@
 
 A window automatically lets you know when a new version is available.
 
+## Support
+
+IP Pilot is free. If it saves you time, a donation is always appreciated: (https://www.paypal.com/ncp/payment/B7XX2XGM74NAN)
+
 ## License
 
 © 2026 GOONY — free application: do not modify, do not resell (see `LICENCE.txt`).
