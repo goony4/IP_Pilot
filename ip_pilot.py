@@ -1402,10 +1402,14 @@ def fenetre_maj(app, info):
         fermer()
 
     def bt(texte, cmd, fond, fg, **kw):
-        b = tk.Label(corps, text=texte, bg=fond, fg=fg, font=(F_TEXTE, 16), padx=20, pady=5, width=13,   # même largeur pour les deux
-                     highlightthickness=3, highlightbackground=NOIR, cursor="pointinghand")
-        b.bind("<ButtonRelease-1>", lambda e: cmd())
-        b.pack(**kw)
+        # le bord noir est un cadre noir autour du bouton (sur Mac, le liseré d'un Label n'est pas toujours dessiné)
+        cadre = tk.Frame(corps, bg=NOIR, padx=4, pady=4, cursor="pointinghand")
+        b = tk.Label(cadre, text=texte, bg=fond, fg=fg, font=(F_TEXTE, 16), padx=20, pady=5, width=13,   # même largeur pour les deux
+                     cursor="pointinghand")
+        b.pack()
+        for w_ in (b, cadre):
+            w_.bind("<ButtonRelease-1>", lambda e: cmd())
+        cadre.pack(**kw)
     ig = tk.Label(corps, text=t("maj_ignorer"), bg=CREME, fg=GRIS_TEXTE, font=(F_TEXTE, 12, "underline"),
                   cursor="pointinghand")
     ig.bind("<ButtonRelease-1>", lambda e: fermer(True))
