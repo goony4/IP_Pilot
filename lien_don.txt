@@ -1,0 +1,2 @@
+# Lien de don PayPal de GOONY (une ligne qui commence par https://). Pour le changer, modifie la ligne puis relance : bash creer_app.sh
+https://www.paypal.com/ncp/payment/B7XX2XGM74NAN

@@ -1,0 +1,154 @@
+IP Pilot  (version 5)
+=====================
+1. Ouvre le Terminal et tape :
+      cd ~/Downloads/IP_Pilot
+      bash creer_app.sh
+2. L'application apparait dans ~/Applications : "IP Pilot".
+
+Nouveautes de la version 4
+- Mascotte vivante : ses yeux suivent la souris, elle cligne, baille puis s'endort si on ne touche a rien,
+  et secoue la tete en cas d'erreur.
+- La langue-cable ondule en permanence, et se tend pendant l'application d'un profil.
+- La fiche RJ45 se debranche pendant l'application, puis se rebranche avec "CLIC !" (succes)
+  ou reste debranchee avec "BZZT !" (echec).
+- Jauge de ping : le cable se remplit, avec la latence en ms (pouce leve / nuage / tete qui pleure).
+- Sons cartoon (clic sur un profil, application, succes, echec...).
+- Fenetres "bricolees" : scotch, post-it, trombones, autocollants, fenetres un peu de travers.
+- Mode nuit (ciel etoile, bonnet de nuit).
+- Interface en francais ou en anglais (la langue du Mac est detectee au premier lancement).
+
+Les 3 petits ronds dans la barre de titre de "reglages du profil" :
+   lune / soleil = mode nuit      haut-parleur = sons (marche / muet)      FR / EN = langue
+Ces choix sont retenus d'un lancement a l'autre.
+
+Si la langue-cable ralentit ton Mac, l'application la ralentit toute seule, puis l'immobilise.
+Pour l'immobiliser d'emblee : lance l'application depuis le Terminal avec  IPPILOT_CALME=1
+
+Le dossier "logo" contient le logo (SVG + PNG).
+Polices embarquees (licence SIL OFL, voir assets/polices) : Lilita One, Gochi Hand, Patrick Hand.
+Les sons (assets/sons) ont ete fabriques pour IP Pilot : aucun droit a respecter.
+
+--- Version 5 ---
+- Interface allegee (plus de scotch ni trombones), prise en bas a droite des reglages, fiches plus petites.
+- Bouton "-" a cote du "+" pour retirer une interface.
+- Application d'un profil plus rapide ; les sons ne se declenchent plus qu'en reaction a tes actions.
+
+Ne plus taper le mot de passe (facultatif) :
+      cd ~/Downloads/IP_Pilot
+      bash autoriser_sans_mot_de_passe.sh
+Une seule saisie du mot de passe, puis plus jamais pour changer d'IP.
+Pour annuler :  sudo rm /etc/sudoers.d/ippilot
+
+Fenetre agrandissable : tire sur les bords de la fenetre ou clique sur le bouton vert (plein ecran).
+Tout le dessin grossit en gardant ses proportions ; le fond remplit le reste de l'ecran.
+Icone du Dock : la tete et sa langue, sans fond.
+
+NOUVEAUTÉS (suite v5)
+- Sans passerelle ni adresse de test : aucun test de ping n'est lancé (le réglage est appliqué tout de suite).
+- La fiche se branche dès que la configuration est appliquée, sans attendre le test.
+- La langue reste animée en permanence (elle ralentit seule si le Mac est chargé).
+- Nouveau rond « animations » à côté de nuit / son / langue : coupe les animations pour économiser le processeur.
+- Cmd+Tab / Dock : le nom « IP Pilot » s'affiche (si le Mac refuse, le script l'indique à la fin).
+- Fenêtre fermée : un clic sur l'icône (Finder, Launchpad) la rouvre. L'icône du Dock saute une fois à l'ouverture.
+
+TROIS ONGLETS (version 6)
+L'application a maintenant trois onglets en haut : Configuration | Appareils | Monitor.
+La mascotte, sa langue et la fiche RJ45 restent visibles sur les trois onglets.
+Plus de fenêtres volantes : tout est dans l'interface, et la nuit / la langue s'appliquent partout.
+- Configuration : tes profils et l'IP (comme avant). Sélectionne un profil, puis clique « Appliquer »
+  (le double-clic ne lance plus l'application, pour éviter de voir l'animation deux fois).
+- Monitor : pour surveiller le réseau pendant que ça joue.
+    * Grande bannière « N / M appareils » : clique dessus pour la fenêtre des problèmes
+      (conflits d'IP, erreurs, appareils perdus, latence élevée).
+    * À gauche, la chaîne des appareils : clique sur l'un d'eux, la courbe de latence le suit.
+    * À droite : la courbe (petite) et l'historique (grand), filtre Tout / Problèmes.
+    * Bouton « Scanner » (la surveillance, elle, est toujours active : menu « Réseau » en haut de l'écran pour l'éteindre).
+- Appareils : l'inventaire de tout ce qui a été vu (nom, IP, MAC, fabricant, dernière vue, note).
+    Boutons Renommer / Note / Oublier ; bouton Scanner en bas à droite.
+- Seules restent en petites fenêtres : les problèmes, et les saisies de nom / note.
+
+SURVEILLANCE, HISTORIQUE, NOMS, EXPORT
+- Surveillance : allumée par défaut. Bouton « Surveillance » dans Monitor, ou menu « Réseau » en haut de l'écran.
+  Toutes les 2 secondes, IP Pilot vérifie les appareils connus ; toutes les 20 secondes, scan complet.
+  Si un appareil disparaît (2 vérifications de suite, environ 5 secondes), la mascotte le dit dans sa bulle,
+  avec son nom. Pas de son d'alerte.
+- Clique sur la bulle de la mascotte (ou le bouton « réseau » du journal) : ouvre l'onglet Monitor.
+  L'historique n'affiche pas les phrases rigolotes de la mascotte.
+- Fabricant : reconnu d'après l'adresse MAC (base de 35 000 marques). Le modèle précis (LA4X, LA12X…)
+  n'est pas dans la MAC : si l'appareil annonce son nom sur le réseau, il est utilisé automatiquement.
+- Noms : onglet Appareils > Renommer. Le nom est retenu grâce à l'adresse MAC, même si l'IP change.
+- Export CSV : uniquement dans la barre de menu du haut de l'écran, menu « Réseau » (dernier scan, appareils, écoute des protocoles).
+- Conflit d'IP : prévenu avant d'appliquer une IP fixe déjà utilisée, si une même IP change d'appareil,
+  ou si le Mac signale qu'un autre appareil prend son adresse.
+- Le Mac ne peut pas savoir comment les câbles sont branchés : la chaîne est une représentation.
+
+À PROPOS, DONS, LICENCE
+- Menu « IP Pilot » en haut de l'écran > « À propos d'IP Pilot… », et menu « Infos » (À propos, Faire un don).
+  Les mêmes entrées existent dans le menu de l'icône de la barre de menu.
+- IP Pilot est gratuit. Il ne doit être ni modifié ni revendu : voir LICENCE.txt.
+- Pour afficher le bouton de don : le lien PayPal est déjà dans lien_don.txt (tu peux le changer, puis relance « bash creer_app.sh »).
+- Le programme est installé sous forme compilée (le texte du code n'est pas fourni).
+
+Version 6.1 : interface plus réactive (dessin des fenêtres mis en mémoire, changement d'onglet dès l'appui, sons lancés à part).
+
+Version 6.10
+- Clic droit (ou Ctrl + clic) sur un appareil, dans Appareils comme dans Monitor : une bulle propose
+  Copier l'IP, Copier l'adresse MAC, Ouvrir l'interface web, Tester un port, Surveiller en continu.
+- Surveiller en continu : ping toutes les 0,5 s (une fenêtre l'explique avant de démarrer), chaque coupure notée dans l'historique
+  avec sa durée. Une pastille rose marque les appareils suivis. Même entrée pour arrêter.
+- Monitor refait : en haut, « coupures · 30 dernières minutes » : une jauge par appareil, 60 tranches de 30 s
+  (vert = ok, orange = courte coupure, rouge = coupure, gris = pas encore surveillé). Les appareils en panne
+  sont en haut. Barre de défilement, flèches ou deux doigts pour voir tous les appareils.
+- Monitor, en bas : l'historique (toujours visible, bouton « Problèmes » pour filtrer, « Vider ») et les courbes.
+  Les flèches ‹ › dans la barre rouge changent de courbe : débit réseau, latence, pertes de paquets, gigue.
+  Pastilles + bouton « + » pour choisir la ou les cartes réseau (débit) ou les appareils (autres courbes), 6 au plus.
+- Appareils : clic sur un titre de colonne (nom, IP, MAC, fabricant, état, note) pour classer ; second clic = ordre inverse.
+  Le bouton de carte ouvre un menu : toutes les cartes, ou une seule carte réseau. Maj / Cmd + clic = sélection multiple.
+- Clic droit > « Identifier » : ouvre un gros voyant vert/rouge qui teste l'appareil sans arrêt. Débranche un
+  câble : si le voyant passe au rouge, c'est le bon appareil. Un bip (sur ce Mac) est possible, désactivé par défaut.
+- « Surveiller en continu » (0,5 s) est un outil à part : il sert à traquer les micro-coupures d'un seul appareil.
+- Barre « réglages du profil » : vitesse du câble négociée (1 Gb/s, 100 Mb/s...).
+- Barres de défilement sur les longues listes ; flèches haut/bas ; défilement à deux doigts.
+- Plus de post-it ; Cmd+S enregistre toujours le profil en cours.
+
+
+ONGLET PROTOCOLES (écoute des ports : OSC, Art-Net, MIDI)
+- L'écoute démarre quand tu ouvres l'onglet et s'arrête quand tu le quittes.
+- OSC et Art-Net : tape le numéro de port dans la case (OSC 8000 par défaut, Art-Net 6454).
+- MIDI : les entrées branchées sont écoutées automatiquement (la case indique combien).
+  Le module MIDI s'installe avec creer_app.sh (connexion internet nécessaire la première fois).
+- Bouton engrenage : options de chaque protocole.
+    Tous : vider la liste à l'ouverture, afficher l'heure du dernier message.
+    Art-Net : choisir les types de paquets (ArtDmx, ArtPoll...), niveau max en % ou 0 à 255.
+    MIDI : choisir les entrées, les canaux (1 à 16) et les types de messages, valeurs en hexadécimal,
+           notes en noms (C4...) avec le do central au choix (C3 ou C4), entrée virtuelle « IP Pilot ».
+- Effacer vide la liste ; l'export CSV de l'écoute est dans le menu « Réseau » en haut de l'écran.
+- Étiquette : pose un trait de séparation daté. Au-dessus du trait : les lignes qui ont bougé depuis l'étiquette
+  (pratique pour retrouver la ligne d'un fader que tu viens de bouger). Clic sur le × du trait pour le retirer.
+- MIDI > options > « Ouvrir le studio MIDI du Mac » : ouvre Configuration Audio MIDI (bus IAC).
+  Le Mac peut te demander d'autoriser IP Pilot à piloter « System Events » pour afficher directement le Studio MIDI ;
+  sinon, dans Configuration Audio MIDI : menu Fenêtre > Afficher le Studio MIDI (⌘2).
+- Les barres de défilement n'apparaissent que lorsque tu fais défiler ou que tu approches la souris du bord.
+
+
+DÉTECTIVE RÉSEAU (menu « Réseau » en haut de l'écran)
+- Branche le câble RJ45, clique sur Écouter : l'app écoute jusqu'à 40 secondes sans rien envoyer (macOS demande ton mot de passe) ; les appareils s'affichent dès qu'ils sont entendus, bouton Arrêter quand tu as trouvé.
+- Elle liste les appareils entendus par plage IP, avec le constructeur ; « Me mettre sur … » règle ton IP sur cette plage.
+- Si rien n'est entendu : appareil silencieux ou réseau découpé en VLANs. Avec un serveur DHCP, passe simplement en DHCP.
+
+SIGNALER UN BUG (menu du haut de l'écran, sous « À propos »)
+- Choisis la catégorie, décris le problème, clique sur Envoyer : l'app Mail s'ouvre avec le message déjà écrit, adressé à goony.contact@gmail.com. Il reste à cliquer sur Envoyer dans Mail.
+
+
+MISE A JOUR DE SECURITE ET DE QUALITE (version 6.10, revision)
+- Assistant « sans mot de passe » (version 3) : n'accepte plus que des dossiers ippilot_* appartenant à l'utilisateur
+  et fermés aux autres, sans passer par un lien symbolique. Au premier usage du Radar / Détective / Synoptique après la mise à jour,
+  macOS redemande le mot de passe UNE fois pour réinstaller l'assistant.
+- Le fichier ippilot_mesure.py n'est plus cherché dans Téléchargements, Bureau, Documents… : il n'est chargé que si
+  IPPILOT_MESURE=1 ET s'il est dans ~/Library/Application Support/IP Pilot.
+- Masque réseau : « 0.0.0.255 » (masque inversé) et « 0 » sont maintenant refusés au lieu d'être convertis sans prévenir.
+- Journal d'erreurs : ~/Library/Application Support/IP Pilot/ippilot.log (une ligne par problème et par minute).
+  À joindre quand tu signales un bug.
+- L'historique des événements n'est plus réécrit en entier à chaque événement (au plus une fois par seconde).
+- La version affichée est maintenant lue dans le code (VERSION) : plus de « VERSION 1 » dans creer_app.sh.
+- Dossier tests/ : python3 -m unittest discover -s tests -t tests   (fonctionne aussi sous Linux, sans interface).
